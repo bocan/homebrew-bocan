@@ -8,7 +8,7 @@ cask "bocan" do
   homepage "https://bocan.app"
 
   livecheck do
-    url :homepage
+    url "https://bocan.app/appcast.xml"
     strategy :sparkle
   end
 
