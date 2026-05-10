@@ -1,0 +1,21 @@
+# .github/workflows/update-cask.yml (in homebrew-bocan repo)
+name: Update cask
+on:
+  repository_dispatch:
+    types: [new-release]
+jobs:
+  update:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Update version and sha256
+        env:
+          VERSION: ${{ github.event.client_payload.version }}
+          SHA256: ${{ github.event.client_payload.sha256 }}
+        run: |
+          sed -i '' "s/version \".*\"/version \"${VERSION}\"/" Casks/bocan.rb
+          sed -i '' "s/sha256 \".*\"/sha256 \"${SHA256}\"/" Casks/bocan.rb
+      - uses: peter-evans/create-pull-request@v8
+        with:
+          title: "chore: bump cask to ${{ github.event.client_payload.version }}"
+          commit-message: "chore: bump cask to ${{ github.event.client_payload.version }}"
