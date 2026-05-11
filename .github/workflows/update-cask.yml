@@ -6,6 +6,9 @@ on:
 jobs:
   update:
     runs-on: macos-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v6
       - name: Update version and sha256
