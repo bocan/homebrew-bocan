@@ -4,7 +4,7 @@ cask "bocan" do
 
   url "https://github.com/bocan/bocan-music/releases/download/v#{version}/Bocan.dmg"
   name "Bòcan"
-  desc "A thoughtful music player for macOS"
+  desc "A thoughtful local music player for macOS"
   homepage "https://bocan.app"
 
   livecheck do
