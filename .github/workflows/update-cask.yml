@@ -8,7 +8,6 @@ jobs:
     runs-on: macos-latest
     permissions:
       contents: write
-      pull-requests: write
     steps:
       - uses: actions/checkout@v6
       - name: Update version and sha256
@@ -18,7 +17,19 @@ jobs:
         run: |
           sed -i '' "s/version \".*\"/version \"${VERSION}\"/" Casks/bocan.rb
           sed -i '' "s/sha256 \".*\"/sha256 \"${SHA256}\"/" Casks/bocan.rb
-      - uses: peter-evans/create-pull-request@v8
-        with:
-          title: "chore: bump cask to ${{ github.event.client_payload.version }}"
-          commit-message: "chore: bump cask to ${{ github.event.client_payload.version }}"
+      # Commit straight to main. The previous create-pull-request flow left
+      # the bump in an unmerged PR for months while reporting success, so
+      # brew served a stale cask (0.12.0 until 2.12.0 was hand-merged).
+      - name: Commit and push
+        env:
+          VERSION: ${{ github.event.client_payload.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Casks/bocan.rb
+          if git diff --cached --quiet; then
+            echo "Cask already at ${VERSION}; nothing to commit."
+            exit 0
+          fi
+          git commit -m "chore: bump cask to ${VERSION}"
+          git push

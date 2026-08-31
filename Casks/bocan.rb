@@ -4,8 +4,8 @@ cask "bocan" do
 
   url "https://github.com/bocan/bocan-music/releases/download/v#{version}/Bocan.dmg"
   name "Bòcan"
-  desc "A thoughtful local music player for macOS"
-  homepage "https://bocan.app"
+  desc "Thoughtful local music player"
+  homepage "https://bocan.app/"
 
   livecheck do
     url "https://bocan.app/appcast.xml"
@@ -13,8 +13,7 @@ cask "bocan" do
   end
 
   auto_updates true
-
-  depends_on macos: ">= :sequoia"
+  depends_on macos: :sequoia
 
   app "Bocan.app"
 
