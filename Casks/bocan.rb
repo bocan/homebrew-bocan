@@ -3,8 +3,8 @@ cask "bocan" do
   sha256 "4634ea267d95329297f51b478aa71d12bcae3fbe384d0c9164859f7da52a0d2c"
 
   url "https://github.com/bocan/bocan-music/releases/download/v#{version}/Bocan.dmg"
-  name "Bòcan"
-  desc "Thoughtful local music player"
+  name "Bòcan Music"
+  desc "Music and podcast player for local libraries"
   homepage "https://bocan.app/"
 
   livecheck do
