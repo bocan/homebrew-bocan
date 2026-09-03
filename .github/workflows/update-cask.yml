@@ -24,8 +24,8 @@ jobs:
         env:
           VERSION: ${{ github.event.client_payload.version }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "Chris Funderburg"
+          git config user.email "chris@funderburg.me"
           git add Casks/bocan.rb
           if git diff --cached --quiet; then
             echo "Cask already at ${VERSION}; nothing to commit."
