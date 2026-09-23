@@ -1,6 +1,6 @@
 cask "bocan" do
-  version "2.17.1"
-  sha256 "2cc22a73715b1bcef0dc88bae0a6159000f9c1a7bc89defb93ea4e635a8bbdfe"
+  version "2.18.0"
+  sha256 "57bfdd346449036cb865c450f3220b41729a36754d994d233b72b59b0502d669"
 
   url "https://github.com/bocan/bocan-music/releases/download/v#{version}/Bocan.dmg"
   name "Bòcan Music"
